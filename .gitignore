@@ -12,5 +12,4 @@ db.sqlite3
 .pydevproject
 
 # Static files
-staticfiles
-
+brenotx/static/
