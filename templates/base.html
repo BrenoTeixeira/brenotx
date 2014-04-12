@@ -23,7 +23,7 @@
                     <ul class="nav nav-pills nav-header">
                           <li><a href="{% url 'blog:post-list' %}">BLOG</a></li>
                           <li><a href="#">AUTHOR</a></li>
-                          <li><a href="#">CONTACT</a></li>
+                          <li><a href="{% url 'contact:form-view' %}">CONTACT</a></li>
                     </ul>
                     <hr style="margin:0px">
                 </div>
@@ -34,18 +34,6 @@
 
                     {% block content %}
                     {% endblock content %}
-
-                  <div class="text-center">
-                    <ul class="pagination pagination-sm">
-                      <li><a href="#">&laquo;</a></li>
-                      <li><a href="#">1</a></li>
-                      <li><a href="#">2</a></li>
-                      <li><a href="#">3</a></li>
-                      <li><a href="#">4</a></li>
-                      <li><a href="#">5</a></li>
-                      <li><a href="#">&raquo;</a></li>
-                    </ul>
-                  </div>
 
                 </div>
 

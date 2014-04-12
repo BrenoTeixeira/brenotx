@@ -32,3 +32,4 @@ class PostListViewTests(TestCase):
         self.assertContains(self.resp, 'My first post')
         self.assertContains(self.resp, 'Content post')
 
+
