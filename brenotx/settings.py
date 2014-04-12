@@ -30,6 +30,8 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
+CRISPY_TEMPLATE_PACK = 'bootstrap3'
+
 INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.auth',
@@ -41,6 +43,9 @@ INSTALLED_APPS = (
     # My apps
     'blog',
     'contact',
+
+    # Third-party apps
+    'crispy_forms',
 )
 
 MIDDLEWARE_CLASSES = (

@@ -11,7 +11,7 @@ class ContactTest(TestCase):
         self.url = reverse('contact:form-view')
         self.resp = self.client.get(self.url)
 
-    def test_GET_contact_page(self):
+    def test_get_contact_page(self):
         self.assertEqual(self.resp.status_code, 200)
 
     def test_template(self):
