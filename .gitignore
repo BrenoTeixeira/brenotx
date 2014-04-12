@@ -13,3 +13,6 @@ db.sqlite3
 
 # Static files
 static/
+
+# Production settings
+brenotx/settings_production.py

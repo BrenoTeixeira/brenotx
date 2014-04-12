@@ -26,10 +26,8 @@ class ContactForm(forms.Form):
                       placeholder='Your email',
                       css_class='form-control'),
         Field('body', placeholder='Your message', css_class='form-control'),
-        # FormActions(Submit('Send', 'Send', css_class='btn btn-primary btn-mg')),
     )
     helper.add_input(Submit('Send', 'Send', css_class='btn btn-primary btn-mg pull-right'))
-
 
     def send_mail(self):
         send_mail('[My Website contact]',
