@@ -11,19 +11,17 @@ class PostTest(TestCase):
 
     def setUp(self):
         self.user = User.objects.create(username='Some_user')
-
-    def create_post(self, title='My post title', published=True):
-        return Post.objects.create(title=title,
-                                   author=self.user,
-                                   published=published)
+        self.post = Post.objects.create(title='My post title',
+                                        author=self.user)
 
     def test_model_creation(self):
-        post = self.create_post()
-        self.assertIsInstance(post, Post)
-        self.assertEqual(post.__unicode__(), post.title)
-        self.assertEqual(post.slug, slugify(post.title))
+        self.assertIsInstance(self.post, Post)
+        self.assertEqual(self.post.__unicode__(), self.post.title)
+        self.assertEqual(self.post.slug, slugify(self.post.title))
 
     def test_model_absolute_url(self):
-        post = self.create_post()
-        self.assertEqual(post.get_absolute_url(),
-                         reverse('blog:post-detail', kwargs={'slug': post.slug}))
+        self.assertEqual(self.post.get_absolute_url(),
+                         reverse('blog:post-detail', kwargs={'slug': self.post.slug}))
+
+    def test_ordering_by_created_at(self):
+        self.assertListEqual(self.post._meta.ordering, ['-created_at',])
