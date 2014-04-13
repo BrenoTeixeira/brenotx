@@ -1,6 +1,38 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    {{ post.title }}
-    {{ post.content }}
+
+<h3><a class="link-hover" href="{% url 'blog:post-detail' post.slug %}">{{ post.title }}</a></h3>
+
+<h6>
+    Written by
+    <a href="#">
+        {% if post.author.first_name %}
+            {{ post.author.first_name }}
+        {% else %}
+            {{ post.author.username }}
+        {% endif %}
+    </a>
+    on {{ post.created_at|date:'F d, o' }}.
+</h6>
+
+<div class="row">
+    <div class="col-md-10">
+        {{ post.content }}
+        <br>
+    </div>
+</div>
+
+</article>
+<p>Tags:
+    <a href="#"><span class="label label-info">Snipp</span></a>
+    <a href="#"><span class="label label-info">Bootstrap</span></a>
+    <a href="#"><span class="label label-info">UI</span></a>
+    <a href="#"><span class="label label-info">growth</span></a>
+    | <i class="icon-comment"></i> <a href="#">3 Comments</a>
+    | <i class="icon-share"></i> <a href="#">39 Shares</a>
+</p>
+
+<hr>
+
 {% endblock content %}

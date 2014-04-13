@@ -75,6 +75,7 @@ class PostDetailViewTests(TestCase):
         self.assertEqual(self.resp.status_code, 200)
         self.assertTemplateUsed(self.resp, 'blog/post_detail.html')
         self.assertContains(self.resp, self.post.title)
+        self.assertContains(self.resp, self.post.author)
         self.assertContains(self.resp, self.post.content)
 
     def test_draft_view(self):
