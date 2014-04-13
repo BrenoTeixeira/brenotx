@@ -4,8 +4,8 @@ from django.core.urlresolvers import reverse
 
 
 class Post(models.Model):
-    title = models.CharField(max_length=500)
-    slug = models.SlugField(editable=False)
+    title = models.CharField(max_length=255, unique=True)
+    slug = models.SlugField(max_length=255, blank=True, unique=True)
     content = models.TextField()
     author = models.ForeignKey('auth.User')
     published = models.BooleanField(default=True)
