@@ -3,10 +3,13 @@ from django.template.defaultfilters import slugify
 from django.core.urlresolvers import reverse
 
 
+from ckeditor.fields import RichTextField
+
+
 class Post(models.Model):
     title = models.CharField(max_length=255, unique=True)
     slug = models.SlugField(max_length=255, blank=True, unique=True)
-    content = models.TextField()
+    content = RichTextField()
     author = models.ForeignKey('auth.User')
     published = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True, editable=False)

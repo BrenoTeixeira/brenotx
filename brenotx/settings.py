@@ -46,6 +46,7 @@ INSTALLED_APPS = (
 
     # Third-party apps
     'crispy_forms',
+    'ckeditor',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -99,6 +100,34 @@ STATICFILES_DIRS = (
 TEMPLATE_DIRS = (
     os.path.join(BASE_DIR, 'templates'),
 )
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
+
+# Django ckeditor
+CKEDITOR_UPLOAD_PATH = MEDIA_ROOT + '/uploads'
+CKEDITOR_IMAGE_BACKEND = 'pillow'
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'MyConfig',
+        'toolbarGroups': [
+            {'name': 'document', 'groups': ['mode', 'document', 'doctools']},
+            {'name': 'editing', 'groups': ['find', 'selection', 'spellchecker']},
+            {'name': 'forms'},
+            {'name': 'basicstyles', 'groups': ['basicstyles', 'cleanup']},
+            '/',
+            {'name': 'paragraph', 'groups': ['list', 'indent', 'blocks', 'align', 'bidi']},
+            {'name': 'links'},
+            {'name': 'insert'},
+            '/',
+            {'name': 'styles'},
+            {'name': 'colors'},
+            {'name': 'tools'},
+            {'name': 'others'},
+            {'name': 'about'}
+        ],
+        'width': '75%',
+    },
+}
 
 # SMTP configuration
 EMAIL_HOST = 'smtp.gmail.com'
