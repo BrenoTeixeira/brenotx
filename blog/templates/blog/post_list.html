@@ -5,53 +5,58 @@
 <article>
 
 {% for post in post_list %}
-<h3><a class="link-hover" href="{% url 'blog:post-detail' post.slug %}">{{ post.title }}</a></h3>
+  <h3><a class="link-hover" href="{% url 'blog:post-detail' post.slug %}">{{ post.title }}</a></h3>
 
-<h6>
+  <h6>
     Written by
     <a href="#">
-        {% if post.author.first_name %}
-            {{ post.author.first_name }}
-        {% else %}
-            {{ post.author.username }}
-        {% endif %}
+      {% if post.author.first_name %}
+        {{ post.author.first_name }}
+      {% else %}
+        {{ post.author.username }}
+      {% endif %}
     </a>
     on {{ post.created_at|date:'F d, o' }}.
-</h6>
+  </h6>
 
-<div class="row">
+  <div class="row">
     <div class="col-md-10">
-        {{ post.content|safe }}
-        <br>
+      {{ post.content|safe }}
+      <br>
     </div>
-</div>
+  </div>
 
 </article>
+
 <p>Tags:
-    <a href="#"><span class="label label-info">Snipp</span></a>
-    <a href="#"><span class="label label-info">Bootstrap</span></a>
-    <a href="#"><span class="label label-info">UI</span></a>
-    <a href="#"><span class="label label-info">growth</span></a>
-    | <i class="icon-comment"></i> <a href="#">3 Comments</a>
-    | <i class="icon-share"></i> <a href="#">39 Shares</a>
+  <a href="#"><span class="label label-info">Snipp</span></a>
+  <a href="#"><span class="label label-info">Bootstrap</span></a>
+  <a href="#"><span class="label label-info">UI</span></a>
+  <a href="#"><span class="label label-info">growth</span></a>
+  | <i class="icon-comment"></i> <a href="#">3 Comments</a>
+  | <i class="icon-share"></i> <a href="#">39 Shares</a>
 </p>
 
 <hr>
 
 {% empty %}
-    <h4 class="text-center">There is no post yet.</h4>
+  <h4 class="text-center">There is no post yet.</h4>
 {% endfor %}
 
+{% if is_paginated %}
   <div class="text-center">
-    <ul class="pagination pagination-sm">
-      <li><a href="#">&laquo;</a></li>
-      <li><a href="#">1</a></li>
-      <li><a href="#">2</a></li>
-      <li><a href="#">3</a></li>
-      <li><a href="#">4</a></li>
-      <li><a href="#">5</a></li>
-      <li><a href="#">&raquo;</a></li>
-    </ul>
+      <span class="page-links pagination">
+        {% if page_obj.has_previous %}
+          <a href="?page={{ page_obj.previous_page_number }}"><span class="glyphicon glyphicon-backward"></span></a>
+        {% endif %}
+        <span class="page-current">
+          Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+          </span>
+        {% if page_obj.has_next %}
+          <a href="?page={{ page_obj.next_page_number }}"><span class="glyphicon glyphicon-forward"></span></a>
+        {% endif %}
+      </span>
   </div>
+{% endif %}
 
 {% endblock content %}

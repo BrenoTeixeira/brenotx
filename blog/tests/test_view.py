@@ -56,6 +56,8 @@ class PostListViewTests(TestCase):
         self.assertContains(response, '1-post-title')
         self.assertNotContains(response, 'My draft title')
 
+    # TODO: test paginator
+
 
 class PostDetailViewTests(TestCase):
 
