@@ -4,6 +4,7 @@ from django.core.urlresolvers import reverse
 
 
 from ckeditor.fields import RichTextField
+from taggit.managers import TaggableManager
 
 
 class Post(models.Model):
@@ -14,6 +15,8 @@ class Post(models.Model):
     published = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True, editable=False)
     updated_at = models.DateTimeField(auto_now=True, editable=False)
+
+    tags = TaggableManager()
 
     class Meta:
         ordering = ['-created_at',]
