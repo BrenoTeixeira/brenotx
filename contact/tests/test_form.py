@@ -1,3 +1,10 @@
+from django.test import TestCase
+from django.core.urlresolvers import reverse
+from django.core import mail
+
+from ..forms import ContactForm
+
+
 class ContactFormTest(TestCase):
 
     def setUp(self):
@@ -36,6 +43,8 @@ class ContactFormTest(TestCase):
         self.assertTrue(resp.context['form'].errors)
 
 
+class SendMailPostTest(TestCase):
+    
     def test_send_email(self):
         mail.send_mail('Subject here',
                        'Body here',
