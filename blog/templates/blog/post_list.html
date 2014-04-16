@@ -34,7 +34,7 @@
    {% empty %}
      <li>No tags yet.</li>
    {% endfor %}
-  | <i class="icon-comment"></i> <a href="#">3 Comments</a>
+  | <i class="icon-comment"></i> <a href="{% url 'blog:post-detail' post.slug %}#disqus_thread"> Comments</a>
   | <i class="icon-share"></i> <a href="#">39 Shares</a>
 </p>
 
