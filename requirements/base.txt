@@ -3,4 +3,3 @@ Pillow==2.4.0
 django-ckeditor-updated==4.2.8
 django-crispy-forms==1.4.0
 django-taggit==0.12
-gunicorn==18.0
