@@ -56,6 +56,14 @@ class PostListViewTests(TestCase):
         self.assertContains(response, '1-post-title')
         self.assertNotContains(response, 'My draft title')
 
+    def test_post_search(self):
+        self.create_post()
+        self.create_post(title='2-post-title',
+                         content='2-post-content')
+        response = self.client.get(reverse('blog:post-list'), {'q': '1-post-title'})
+        self.assertNotContains(response, '2-post-title')
+        self.assertContains(response, '1-post-title')
+
     # TODO: test paginator
 
 

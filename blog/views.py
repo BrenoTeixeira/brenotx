@@ -18,6 +18,15 @@ class PostListView(TagMixin, ListView):
     queryset = Post.objects.filter(published=True)
     paginate_by = 2
 
+    def get_queryset(self):
+        queryset = super(PostListView, self).get_queryset()
+
+        q = self.request.GET.get('q')
+        if q:
+            return queryset.filter(title__icontains=q)
+
+        return queryset
+
 
 class PostDetailView(DetailView):
     model = Post
