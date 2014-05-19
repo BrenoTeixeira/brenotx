@@ -1,78 +1,99 @@
 {% extends 'base.html' %}
 
-{% block content %}
-
-<article>
-
-{% for post in post_list %}
-  <h3><a class="link-hover" href="{% url 'blog:post-detail' post.slug %}">{{ post.title }}</a></h3>
-
-  <h6>
-    Written by
-    <a href="#">
-      {% if post.author.first_name %}
-        {{ post.author.first_name }}
-      {% else %}
-        {{ post.author.username }}
-      {% endif %}
-    </a>
-    on {{ post.created_at|date:'F d, o' }}.
-  </h6>
-
-  <div class="row">
-    <div class="col-md-10">
-      {{ post.content|safe }}
-      <br>
+{% block topic %}
+    <div class="col-sm-4">
+        <h3>Blog</h3>
     </div>
-  </div>
+    <div class="col-sm-8">
+        <ol class="breadcrumb pull-right hidden-xs">
+            <li><a href="{% url 'blog:post-list' %}">Home</a></li>
+            <li class="active">Blog</li>
+        </ol>
+    </div>
+{% endblock topic %}
 
-</article>
+{% block content %}
+    {% for post in post_list %}
+        <div class="blog">
+            <div class="blog-desc">
+                <h3>
+                    <a class="link-hover" href="{% url 'blog:post-detail' post.slug %}">{{ post.title }}</a>
+                </h3>
+                <hr>
+                <h6 class="text-muted">
+                    Written by
+                    <a href="#">
+                        {% if post.author.first_name %}
+                            {{ post.author.first_name }}
+                        {% else %}
+                            {{ post.author.username }}
+                        {% endif %}
+                    </a>
+                    on {{ post.created_at|date:'F d, o' }}.
+                </h6>
 
-<p>Tags:
-   {% for tag in post.tags.all %}
-     <a href="{% url 'blog:post-tags' tag.slug %}"><span class="label label-info">{{ tag.name }}</span></a>
-   {% empty %}
-     <li>No tags yet.</li>
-   {% endfor %}
-  | <i class="icon-comment"></i> <a href="{% url 'blog:post-detail' post.slug %}#disqus_thread"> Comments</a>
-  | <i class="icon-share"></i> <a href="#">39 Shares</a>
-</p>
+                <div class="row">
+                    <div class="col-sm-12">
+                        {{ post.content|safe }}
+                        <br>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-<hr>
+        <p>Tags:
+            {% for tag in post.tags.all %}
+                <a href="{% url 'blog:post-tags' tag.slug %}"><span class="label label-info">{{ tag.name }}</span></a>
+            {% empty %}
+                <li>No tags yet.</li>
+            {% endfor %}
+        | <i class="icon-comment"></i> <a href="{% url 'blog:post-detail' post.slug %}#disqus_thread"> Comments</a>
+        | <i class="icon-share"></i> <a href="#">39 Shares</a>
+        </p>
 
-{% empty %}
-  <h4 class="text-center">There is no post yet.</h4>
-{% endfor %}
+{#        <a class="btn btn-lg btn-red" href="blog-post.html">Read More...</a>#}
 
-{% if is_paginated %}
-  <div class="text-center">
-    <ul class="pagination">
-      {% if page_obj.has_previous %}
-        <li><a href="?page={{ page_obj.previous_page_number }}">Previous</a></li>
-      {% endif %}
-      {% for pg in paginator.page_range %}
-        {% if page_obj.number == pg %}
-          <li class="active"><a href="?page={{ pg }}">{{ pg }}</a></li>
-        {% else %}
-          <li><a href="?page={{ pg }}">{{ pg }}</a></li>
-        {% endif %}
-      {% endfor %}
-      {% if page_obj.has_next %}
-        <li><a href="?page={{ page_obj.next_page_number }}">Next</a></li>
-      {% endif %}
-    </ul>
-  </div>
-{% endif %}
+    {% empty %}
+        <h4 class="text-center">There is no post yet.</h4>
+    {% endfor %}
 
+
+    {% if is_paginated %}
+        <div class="text-center">
+            <ul class="pagination">
+                {% if page_obj.has_previous %}
+                    <li><a href="?page={{ page_obj.previous_page_number }}">Previous</a></li>
+                {% endif %}
+                {% for pg in paginator.page_range %}
+                    {% if page_obj.number == pg %}
+                        <li class="active"><a href="?page={{ pg }}">{{ pg }}</a></li>
+                    {% else %}
+                        <li><a href="?page={{ pg }}">{{ pg }}</a></li>
+                    {% endif %}
+                {% endfor %}
+                {% if page_obj.has_next %}
+                    <li><a href="?page={{ page_obj.next_page_number }}">Next</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    {% endif %}
+
+    <div class="clearfix"></div>
 {% endblock content %}
 
 {% block categories %}
-  <h5>CATEGORIES</h5>
-  <ul class="side-nav">
-    {% for tag in tags %}
-      <li><a href="{% url 'blog:post-tags' tag.slug %}">{{ tag.name }}</a></li>
-    {% empty %}
-      <li>No tags yet.</li>
-    {% endfor %}
-  </ul>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            CATEGORIES
+        </div>
+        <div class="panel-body">
+            <ul>
+                {% for tag in tags %}
+                    <li><a href="{% url 'blog:post-tags' tag.slug %}">{{ tag.name }}</a></li>
+                {% empty %}
+                    <li>No tags yet.</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
 {% endblock categories %}

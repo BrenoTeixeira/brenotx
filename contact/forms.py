@@ -14,7 +14,7 @@ class ContactForm(forms.Form):
     helper = FormHelper()
     helper.form_method = 'POST'
     helper.form_class = 'form-horizontal'
-    helper.field_class = 'col-md-12'
+    helper.field_class = 'col-sm-12'
     helper.form_show_labels = False
     helper.layout = Layout(
         PrependedText('name',
@@ -27,7 +27,7 @@ class ContactForm(forms.Form):
                       css_class='form-control'),
         Field('body', placeholder='Your message', css_class='form-control'),
     )
-    helper.add_input(Submit('Send', 'Send', css_class='btn btn-primary btn-mg pull-right'))
+    helper.add_input(Submit('Send', 'Send', css_class='btn btn-md btn-red pull-right'))
 
     def send_mail(self):
         send_mail('[My Website contact]',
