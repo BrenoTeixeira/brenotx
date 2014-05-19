@@ -48,7 +48,6 @@ INSTALLED_APPS = (
     'crispy_forms',
     'ckeditor',
     'taggit',
-    'debug_toolbar',
 )
 
 MIDDLEWARE_CLASSES = (
