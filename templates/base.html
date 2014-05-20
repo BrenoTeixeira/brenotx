@@ -30,14 +30,26 @@
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-    <script type="text/javascript">
-        jQuery(document).ready(function($) {
-            $("li.dropdown").click(function() {
-                // remove classes from all
-                $("li.dropdown").removeClass("active");
-                // add class to the one we clicked
-                $(this).addClass("active");
-            });
+    <script>
+        $(document).ready(function(){
+            switch (window.location.pathname) {
+                // Used for Main Navigation
+                case "/":
+                    $(".nav-home").addClass("active");
+                    break;
+                case "/portfolio/":
+                    $(".nav-portfolio").addClass("active");
+                    break;
+                case "/about/":
+                    $(".nav-about").addClass("active");
+                    break;
+                case "/blog/":
+                    $(".nav-blog").addClass("active");
+                    break;
+                case "/contact/":
+                    $(".nav-contact").addClass("active");
+                    break;
+            };
         });
     </script>
 </head>
@@ -58,16 +70,16 @@
         </div>
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li class="hidden-sm">
-                    <a href="{% url 'blog:post-list' %}">Home</b></a>
+                <li class="hidden-sm nav-home">
+                    <a href="{% url 'blog:post-list' %}">Home</a>
                 </li>
-                <li class="hidden-sm">
-                    <a href="#">Portfolio</b></a>
+                <li class="hidden-sm nav-portfolio">
+                    <a href="#">Portfolio</a>
                 </li>
-                <li class="hidden-sm">
-                    <a href="{% url 'blog:post-list' %}">Blog</b></a>
+                <li class="hidden-sm nav-blog">
+                    <a href="{% url 'blog:post-list' %}">Blog</a>
                 </li>
-                <li class="hidden-sm">
+                <li class="hidden-sm nav-contact">
                     <a href="{% url 'contact:form-view' %}">Contact</a>
                 </li>
                 <!-- Navbar Search -->
