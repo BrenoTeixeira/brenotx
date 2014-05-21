@@ -47,11 +47,11 @@
             {% empty %}
                 <li>No tags yet.</li>
             {% endfor %}
-        | <i class="icon-comment"></i> <a href="{% url 'blog:post-detail' post.slug %}#disqus_thread"> Comments</a>
-        | <i class="icon-share"></i> <a href="#">39 Shares</a>
+        | <a href="{% url 'blog:post-detail' post.slug %}#disqus_thread"> Comments</a>
+        | <a href="#">39 Shares</a>
         </p>
 
-{#        <a class="btn btn-lg btn-red" href="blog-post.html">Read More...</a>#}
+        {#        <a class="btn btn-lg btn-red" href="blog-post.html">Read More...</a>#}
 
     {% empty %}
         <h4 class="text-center">There is no post yet.</h4>

@@ -28,7 +28,7 @@ class PostListView(TagMixin, ListView):
         return queryset
 
 
-class PostDetailView(DetailView):
+class PostDetailView(TagMixin, DetailView):
     model = Post
     queryset = Post.objects.filter(published=True)
 

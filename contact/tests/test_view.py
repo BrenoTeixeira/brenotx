@@ -16,13 +16,6 @@ class ContactTest(TestCase):
     def test_template(self):
         self.assertTemplateUsed(self.resp, 'contact/contact.html')
 
-    def test_html_form(self):
-        self.assertContains(self.resp, '<form')
-        self.assertContains(self.resp, '<input', 5)
-        self.assertContains(self.resp, 'type="text"', 2)
-        self.assertContains(self.resp, 'type="email"')
-        self.assertContains(self.resp, 'type="submit"')
-
     def test_csrf_token(self):
         self.assertContains(self.resp, 'csrfmiddlewaretoken')
 
