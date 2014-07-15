@@ -30,8 +30,14 @@ class ContactForm(forms.Form):
     helper.add_input(Submit('Send', 'Send', css_class='btn btn-md btn-red pull-right'))
 
     def send_mail(self):
+
+        message = """
+            Email: %(email)s
+            Message: %(body)s
+        """ % self.cleaned_data
+
         send_mail('[My Website contact]',
-                  self.cleaned_data['body'],
+                  message,
                   self.cleaned_data['email'],
                   ['brenotx@gmail.com'],
                   fail_silently=False,)
